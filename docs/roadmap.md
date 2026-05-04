@@ -7,12 +7,17 @@
 - Stored processed events and aggregate metrics in SQLite
 - Added SQL queries for country, category, and session-level event analysis
 
-## Phase 2 Planned
-- Add a Kafka broker runtime
-- Replace the in-memory queue with Kafka topics
-- Implement a Kafka producer for event replay
-- Implement a Kafka consumer for downstream aggregation
-- Expand stream metrics to include time-windowed analytics
+## Phase 2 Completed
+- Connected the project to a real Kafka broker
+- Replaced the in-memory queue path with a Kafka topic
+- Implemented a Kafka producer for event replay
+- Implemented a Kafka consumer for downstream aggregation
+- Persisted Kafka-consumed results into a separate SQLite sink
+
+## Next Improvements
+- Add time-windowed streaming metrics
+- Add more advanced clickstream session analytics
+- Containerize the broker and pipeline for easier portability
 
 ---
 
@@ -25,9 +30,14 @@
 - 将处理后的事件和聚合指标写入 SQLite
 - 增加国家、类目和 session 维度的 SQL 分析
 
-## 第二阶段计划
-- 增加 Kafka broker 运行环境
-- 使用 Kafka topic 替换内存队列
+## 第二阶段已完成
+- 将项目接入真实 Kafka broker
+- 使用 Kafka topic 替换内存队列路径
 - 实现用于事件重放的 Kafka producer
 - 实现下游聚合的 Kafka consumer
-- 扩展为带时间窗口的流式指标分析
+- 将 Kafka 消费结果写入独立的 SQLite 落库
+
+## 后续优化
+- 增加带时间窗口的流式指标
+- 增加更深入的 clickstream session 分析
+- 将 broker 和管道容器化，提升可移植性

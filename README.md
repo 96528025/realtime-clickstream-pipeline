@@ -4,7 +4,7 @@ This project is a real-time e-commerce data engineering project built on the UCI
 
 ## Current Scope
 - Phase 1 completed: local streaming simulation with a Python producer-consumer pipeline
-- Phase 2 planned: Kafka-based event streaming upgrade
+- Phase 2 completed: Kafka-based event streaming with a real broker, topic, producer, and consumer
 
 ## Goals
 - Replay historical clickstream events as a simulated real-time stream
@@ -18,14 +18,16 @@ This project is a real-time e-commerce data engineering project built on the UCI
 
 ## Key Results
 - Standardized 165,474 raw clickstream records into an event table with 17 streaming-ready fields
-- Replayed the full event history through a local producer-consumer pipeline and stored results in SQLite
+- Replayed the full event history through both a local producer-consumer pipeline and a Kafka-based event pipeline
+- Produced and consumed all 165,474 events through the `clickstream-events` Kafka topic and stored results in SQLite
 - Generated stream metrics for country-level activity, category activity, and session-level event volume
 - Identified country `29` as the dominant traffic source, main category `1` as the most active category, and session `22433` as the most active session
 
-## Phase 1 Architecture
+## Kafka Architecture
 - Historical clickstream dataset as the event source
-- Python producer to replay events in sequence
-- Streaming consumer to process incoming events
+- Python Kafka producer to replay events in sequence
+- Kafka topic for event transport and decoupling
+- Python Kafka consumer to process incoming events
 - SQLite sink for processed events and real-time aggregates
 
 ## Project Structure
@@ -39,7 +41,7 @@ This project is a real-time e-commerce data engineering project built on the UCI
 - Top countries by streamed event volume
 - Top categories by streamed event volume
 - Top sessions by event count
-- SQLite used as the local streaming sink and analytics database
+- SQLite used as the Kafka-backed streaming sink and analytics database
 
 ---
 
@@ -49,7 +51,7 @@ This project is a real-time e-commerce data engineering project built on the UCI
 
 ## 当前阶段
 - 第一阶段已完成：基于 Python producer-consumer 的本地流式模拟
-- 第二阶段计划中：升级为基于 Kafka 的事件流管道
+- 第二阶段已完成：接入真实 Kafka broker、topic、producer 和 consumer
 
 ## 项目目标
 - 将历史点击流事件重放为模拟实时数据流
@@ -63,14 +65,16 @@ This project is a real-time e-commerce data engineering project built on the UCI
 
 ## 核心结果
 - 将 165,474 条原始点击流记录标准化为包含 17 个字段的流处理事件表
-- 通过本地 producer-consumer 管道重放全部历史事件，并将结果写入 SQLite
+- 通过本地 producer-consumer 管道和 Kafka 事件流管道重放全部历史事件，并将结果写入 SQLite
+- 通过 `clickstream-events` Kafka topic 完整生产和消费 165,474 条事件
 - 生成国家维度、类目维度和 session 维度的流式聚合指标
 - 识别出国家 `29` 为主要流量来源、主类目 `1` 为最活跃类目、session `22433` 为最活跃会话
 
-## 第一阶段架构
+## Kafka 架构
 - 历史点击流数据集作为事件源
-- 使用 Python producer 按顺序重放事件
-- 使用 streaming consumer 处理输入事件
+- 使用 Python Kafka producer 按顺序重放事件
+- 使用 Kafka topic 作为事件传输层
+- 使用 Python Kafka consumer 处理输入事件
 - 使用 SQLite 存储处理后的事件和实时聚合指标
 
 ## 项目结构
@@ -84,4 +88,4 @@ This project is a real-time e-commerce data engineering project built on the UCI
 - 国家维度事件量分析
 - 类目维度事件量分析
 - session 维度事件数分析
-- 使用 SQLite 作为本地流处理落库和分析数据库
+- 使用 SQLite 作为 Kafka 流处理落库和分析数据库
